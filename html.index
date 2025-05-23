@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kollicoin igénylés</title>
+  <style>
+    body {
+      background-color: #6a0dad; /* lila háttér */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      color: white;
+    }
+
+    button {
+      background-color: #8a2be2; /* világosabb lila gomb */
+      color: white;
+      padding: 20px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #9f47ff;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="handleClick()">Kérem a Kolicoint</button>
+
+  <script>
+    const scriptURL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE";
+
+    function handleClick() {
+      fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'requestCoin' }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.text())
+      .then(text => alert(text))
+      .catch(error => alert('Hiba történt: ' + error.message));
+    }
+  </script>
+</body>
+</html>
